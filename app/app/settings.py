@@ -41,9 +41,11 @@ INSTALLED_APPS = [
 
     # LOCAL APPS
     'core.apps.CoreConfig',
+    'user.apps.UserConfig',
 
     # 3rd Party Apps,
     'rest_framework',
+    'rest_framework.authtoken',
     'drf_spectacular',
 ]
 
