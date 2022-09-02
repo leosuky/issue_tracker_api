@@ -30,4 +30,5 @@ urlpatterns = [
     ),
     # APP URLS
     path('api/user/', include('user.urls')),
+    path('api/project/', include('project.urls')),
 ]

@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     # LOCAL APPS
     'core.apps.CoreConfig',
     'user.apps.UserConfig',
+    'project.apps.ProjectConfig',
 
     # 3rd Party Apps,
     'rest_framework',

@@ -4,6 +4,7 @@ Database Models
 This works because we update the AUTH_USER_MODEL
 setting in our settings.py file.
 """
+from django.conf import settings
 from django.db import models
 from django.contrib.auth.models import (
     AbstractBaseUser,
@@ -46,3 +47,29 @@ class User(AbstractBaseUser, PermissionsMixin):
     objects = UserManager()
 
     USERNAME_FIELD = 'email'
+
+
+class Project(models.Model):
+    """Project Object"""
+    PROJECT_STATUS = (
+        ('Design', 'Design'),
+        ('Implementation', 'Implementation'),
+        ('Testing', 'Testing'),
+        ('Deployment', 'Deployment'),
+        ('Completed', 'Completed'),
+        ('Abandoned', 'Abandoned'),
+    )
+
+    createdBy = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE
+    )   # its best practice to reference the User model from settings.py
+    title = models.CharField(max_length=255)
+    description = models.TextField(blank=True)
+    status = models.CharField(
+        max_length=200, choices=PROJECT_STATUS, null=True, blank=True
+    )
+    createdAt = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.title
